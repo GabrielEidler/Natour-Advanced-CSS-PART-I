@@ -22,3 +22,21 @@ Block level elements goes the full width available, and it breaks the line after
 
 Span is treated like a text, wo we need to change it's display type to block
 ```
+
+**Lecture II**
+- Cool CSS animations
+
+```
+There are 2 types of animations:
+
+Using animation and @keyframes
+
+or using the transition property
+
+this is one of the most important properties in animation, and the different configurations will alter the "feel" in the user experience
+animation-timing-function: ease-out;
+
+in animation there is a shake bug, and the fix uses the *backFace-visibility* property
+
+VS-CODE: ALT + CLICK => Multiple Cursors
+```
