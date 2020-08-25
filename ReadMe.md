@@ -111,3 +111,18 @@ The three principles are:
 
     Having a rem = 62.5% (equals 10px), writing 10px is bad practice makes mental calculations a lot easier
 ```
+
+**Lecture VII**
+- The box model with box-sizing: border-box
+- Inline, block-level and inline-block
+- Stacking Contexts
+
+```
+With box-sizing: border-box, the padding is included in the total height and width (which honestly makes a lot more sense)
+
+z-index are used for stacking context
+
+Opacity different from one, a transform, a filter also creates a stacking context,
+ and because of that, even with the z index set, the stacking order doesn't work
+ as expected.
+```
