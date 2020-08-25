@@ -6,3 +6,38 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+/* BASIC RESET */
+* {
+    margin: 0;
+    padding: 0;
+    /* Change the box models so the borders and the paddings are no longer added to the total height and width*/
+    box-sizing: border-box;
+}
+
+/* using inheritance to set up font configuration, and it's more efficient and the best practice*/
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    /* 1.7 times bigger than the pre-defined line height */
+    line-height: 1.7;
+    color: #777;
+    padding: 30px;
+}
+
+.header {
+    height: 95vh;
+    /* here we are setting fist a linear gradient, and then a background img */
+    background-image: linear-gradient(
+        to right bottom, 
+        #7ed56fcb, 
+        #28b485d3), 
+        url('../img/hero.jpg');
+    /* maintain aspect ratio even when zooming */
+    background-size: cover;
+    /* The top of the image always stays at the top of the container */
+    background-position: top;
+
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
