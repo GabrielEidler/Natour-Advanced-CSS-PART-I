@@ -1,6 +1,16 @@
 
 # Lectures Notes
 
+*template:*
+
+**Lecture X**
+- 
+
+```
+
+```
+
+
 **Lecture I**
 - The best way to perform a basic reset using the universal selector
 - How to set project-wide font definitions
@@ -23,7 +33,7 @@ Block level elements goes the full width available, and it breaks the line after
 Span is treated like a text, wo we need to change it's display type to block
 ```
 
-**Lecture II**
+**Lecture III**
 - Cool CSS animations
 
 ```
@@ -39,4 +49,21 @@ animation-timing-function: ease-out;
 in animation there is a shake bug, and the fix uses the *backFace-visibility* property
 
 VS-CODE: ALT + CLICK => Multiple Cursors
+```
+
+**Lecture IV**
+- What pseudo-elements and pseudo-classes are
+- How and Why to use the ::after pseudo-element
+- hover animation using the transition property
+
+
+```
+An inline element is treated like it's text, so you can influence it like you would a text element
+
+The transition property needs to be specified in the initial state of the element
+
+Sudo elements allow us to style certain parts of elements
+    - For example the :after creates a virtual element right after the first one
+
+You can use after to create an element that can stay behind the first one and add splash animations to it
 ```

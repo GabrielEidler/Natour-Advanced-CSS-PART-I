@@ -66,6 +66,8 @@ body {
     left: 50%;
     /* this is related to the element, and not it's parent */
     transform: translate(-50%, -50%);
+    /* aligining the button at center */
+    text-align: center;
 }
 
 .heading-primary {
@@ -73,6 +75,7 @@ body {
     text-transform: uppercase;
     /* fix for animation shakiness */
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -133,4 +136,98 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+@keyframes moveInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* link is a pseudo class (like hover)
+    link is a special state for an a element
+    we don't want any changes to already visited links
+*/
+.btn:link, .btn:visited {
+    text-transform: uppercase;
+    color: gray;
+    text-decoration: none;
+    /* top right bottom left */
+    padding: 15px 40px;
+    /*  with inline block we have:
+        - block predef instead of text predef
+        - inline predef instead of block's predef (doesn't go the full width)
+        
+        the only thing this is doing it's giving it a block margin/padding, but 
+        it maintains its text characteristic
+        */
+    display: inline-block;
+    border-radius: 100px;
+    /* specify which properties we want to animate*/
+    transition: all .2s;
+    /* setting to relative so the ::after gets the button as the reference */
+    position: relative;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /* offset in x direction ;  offset in Y direction; blur ; color*/
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* once clicked */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+    background-color: white;
+    color: #777;
+}
+
+.btn::after {
+    /* add an element exactly like the button, behind the button 
+    when you hover out the button, the pseudo element goes back behind the button
+
+    for this button you need to specify it s content and its display type
+    
+    it is treated like a child of the chosen element
+    */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    /* use absolute positioning to put it behind the actual button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* the reference will always be the first element with relative positioning it can find */
+    transition: all .4s;
+}
+
+.btn-white::after{
+    background-color: white;
+}
+
+/* WHEN WE HOVER THE BUTTON, WE WANT SOME CERTAIN STYLES FOR THE "AFTER" PSEUDO ELEMENT */
+.btn:hover::after {
+    /* grow and fade out */
+    transform: scaleX(1.2) scaleY(1.4);
+    opacity: 0;
+}
+
+.btn-animated {
+    animation: moveInButton 0.5s ease-out 1s;
+    /* animation fill mode will solve the "button doesn't start invisible" problem */
+    /* backwards basically sets up that the initial property is injected in the element */
+    animation-fill-mode: backwards;
 }
