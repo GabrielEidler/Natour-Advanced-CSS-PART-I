@@ -8,22 +8,32 @@ Dark green: #28b485
 */
 
 /* BASIC RESET */
-* {
+*, 
+*::after,
+*::before {
     margin: 0;
     padding: 0;
-    /* Change the box models so the borders and the paddings are no longer added to the total height and width*/
-    box-sizing: border-box;
+    /* this is better practice */
+    box-sizing: inherit;
+}
+
+html {
+    /* 10 pixels is easier to mentally calculate */
+    font-size: 62.5%;
 }
 
 /* using inheritance to set up font configuration, and it's more efficient and the best practice*/
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     /* 1.7 times bigger than the pre-defined line height */
     line-height: 1.7;
     color: #777;
-    padding: 30px;
+    padding: 3rem;
+
+    /* Change the box models so the borders and the paddings are no longer added to the total height and width*/
+    box-sizing: border-box;
 }
 
 .header {
@@ -49,13 +59,13 @@ body {
     /* here we use absolute positioning */
     position: absolute;
     /* the reference for the starting point is a parent that has it's position set to relative */
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo {
     pointer-events: none;
-    height: 35px;
+    height: 3.5rem;
 }
 
 
@@ -75,14 +85,14 @@ body {
     text-transform: uppercase;
     /* fix for animation shakiness */
     backface-visibility: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 .heading-primary-main {
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 0.9s;
@@ -96,9 +106,9 @@ body {
 
 .heading-primary-sub {
     display: block;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 17.4px;
+    letter-spacing: 1.75rem;
 
     /* short syntax for animation */
     animation: moveInRight 0.9s ease-out;
@@ -109,11 +119,11 @@ body {
 @keyframes moveInLeft {
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
 
     80%{
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -125,11 +135,11 @@ body {
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80%{
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -141,7 +151,7 @@ body {
 @keyframes moveInButton {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     100% {
@@ -159,7 +169,7 @@ body {
     color: gray;
     text-decoration: none;
     /* top right bottom left */
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     /*  with inline block we have:
         - block predef instead of text predef
         - inline predef instead of block's predef (doesn't go the full width)
@@ -168,23 +178,24 @@ body {
         it maintains its text characteristic
         */
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     /* specify which properties we want to animate*/
     transition: all .2s;
     /* setting to relative so the ::after gets the button as the reference */
     position: relative;
+    font-size: 1.6rem;
 }
 
 .btn:hover {
     transform: translateY(-3px);
     /* offset in x direction ;  offset in Y direction; blur ; color*/
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 /* once clicked */
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .btn-white {
@@ -204,7 +215,7 @@ body {
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     /* use absolute positioning to put it behind the actual button */
     position: absolute;
     top: 0;
@@ -226,7 +237,7 @@ body {
 }
 
 .btn-animated {
-    animation: moveInButton 0.5s ease-out 1s;
+    animation: moveInButton .5s ease-out 1s;
     /* animation fill mode will solve the "button doesn't start invisible" problem */
     /* backwards basically sets up that the initial property is injected in the element */
     animation-fill-mode: backwards;
