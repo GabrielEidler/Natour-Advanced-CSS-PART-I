@@ -3,7 +3,7 @@
 
 *template:*
 
-**Lecture X**
+**Lecture n**
 - 
 
 ```
