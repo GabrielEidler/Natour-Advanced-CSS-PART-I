@@ -166,3 +166,10 @@ The 7-1 Pattern
 
     1 main Sass file to import all other files into a compiled CSS stylesheet
 ```
+
+**Lecture IX**
+- Introduction to Sass
+
+```
+
+```
