@@ -95,7 +95,7 @@ The three principles are:
             + Less code
             + Compress code
             + Use a CSS preprocessor(like Sass)
-            + Compress Images (This is by far the biggest bottleneck in terms of website size)
+            + Compress Images (Images are by far the biggest bottleneck in terms of website size)
 
 ```
 
@@ -123,6 +123,46 @@ With box-sizing: border-box, the padding is included in the total height and wid
 z-index are used for stacking context
 
 Opacity different from one, a transform, a filter also creates a stacking context,
- and because of that, even with the z index set, the stacking order doesn't work
- as expected.
+and because of that, even with the z index set, the stacking order doesn't work
+as expected.
+```
+
+**Lecture VIII**
+- The Think - Build - Architecture Mindset
+
+```
+Maintainable and scalable code => Clean, Modular, Reusable and Ready for Growth 
+
+About Component Driven Design: “Simply put, component-driven development means designing your software applications 
+by building loosely-coupled independent components.”        
+                            - Saring, 2019
+
+BEM Model for building meaningful class names:
+    BEM stands for Block Element Modifier
+        .block {}
+        .block__element {}
+        .block__element--modifier
+    
+    BLOCK: standalone component that is meaningful on its own
+        e.g. class="btn" or class="recipe", these names can be reused all over the project
+        one block can be nested in another
+    
+    ELEMENT: part of a block that has no standalone meaning 
+
+    MODIFIER: a different version of a block or an element
+        e.g. class="recipe__btn btn btn--round" or class="recipe__stat-name--1"
+
+    Although is not the best way of formatting, BEM is a good standard to follow
+
+The 7-1 Pattern
+    7 different folders for partial Sass files,
+        base/ - basic product definition
+        components/ - one file for each component
+        layout/ - overall layout of the project
+        pages/ - styles for specific pages
+        themes/ - in case there are different themes
+        abstracts/ - code that doesn't output any css, such as variables
+        vendors/ - all 3rd party css goes
+
+    1 main Sass file to import all other files into a compiled CSS stylesheet
 ```
