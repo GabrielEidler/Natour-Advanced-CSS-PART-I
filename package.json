@@ -1,0 +1,15 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:GabrielEidler/Natour-Advanced-CSS-PART-I.git",
+  "author": "Gabriel <eidlerdoc@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile:sass": "node-sass sass/main.scss css/style.css"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {}
+}

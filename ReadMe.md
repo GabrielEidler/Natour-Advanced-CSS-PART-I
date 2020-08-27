@@ -8,6 +8,7 @@
 
 ```
 
+
 ```
 
 
@@ -62,10 +63,15 @@ An inline element is treated like it's text, so you can influence it like you wo
 
 The transition property needs to be specified in the initial state of the element
 
-Sudo elements allow us to style certain parts of elements
+pseudo elements allow us to style certain parts of elements
     - For example the :after creates a virtual element right after the first one
 
 You can use after to create an element that can stay behind the first one and add splash animations to it
+
+example of a pseudo class:
+    .btn-main:link{
+
+    }
 ```
 
 **Lecture V**
@@ -169,7 +175,107 @@ The 7-1 Pattern
 
 **Lecture IX**
 - Introduction to Sass
+- Compiling Sass with npm packages and scripts 
 
 ```
+Sass is a CSS preprocessor, an extension of CSS that adds power and elegance to the basic language
+
+Sass solves the CSS problem of being messy
+
+Probably Styled components is the best option for React, but it's still useful to learn about Sass 
+
+Sass syntax vs. SCSS syntax
+    SCSS has indentations, which is better
+
+
+```
+
+**Lecture X**
+-  Solution for floated child elements
+-  Modifying child elements
+
+```
+Modifying child elements:
+    .my-class:last-child{
+
+    }
+
+    .my-class:first-child {
+
+    }
+
+Sass, like Styled components, enables nesting
+
+You shouldn't go deeper than 3 levels
+
+when you float an element (right or left), the structure (child elements) collapses and
+LOSES its Height! this is a common issue with floated elements
+
+    Whenever you use float, you need to use the clearfix solution:
+
+        1. Create a class called clearfix
+        2. Put in these configurations:
+
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+Inline-block will create padding on top and bottom of text elements (reminder)
+
+Using nesting, you can give different states config inside the main selector, as shown below:
+
+    .btn-main {
+        :link{
+            //config 
+        }
+
+        :hover{
+            //config 
+        }
+    }
+
+```
+
+**Lecture XI**
+- Mixins, extends and functions
+
+```
+Mixin - Reusable variable with multiple lines of code
+    for example, instead of copy/paste the .clearfix class, we use a mixin
+    and add that mixin when I need to
+        @mixin class-name{}
+
+        and use it with:
+        @include class-name;
+
+    Mixin can accept variables as arguments (similar to a function)
+
+Functions
+    example: 
+        @function($a, $b){
+            @return $a / $b
+        }
+
+Extends - write a placeholder with different styles, and have a selector use that placeholder
+    example:
+        %btn-placeholder {
+            //styles
+        }
+        usage:
+        @extend %btn-placeholder;
+
+    Extend is different from Mixin because it doesn't copy the styles into the selector, but rather copy the selector into the extend
+
+    use Extend only for very related things!
+
+
+```
+
+**Lecture XII**
+- converting project from CSS to SCSS
+
+```
+Valid CSS works in SCSS environment
 
 ```

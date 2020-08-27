@@ -1,0 +1,249 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+
+$color-primary: #7ed56f;
+$color-primary-light: #55c57a;
+$color-primary-dark: #28b485;
+
+/* BASIC RESET */
+*, 
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* this is better practice */
+    box-sizing: inherit;
+}
+
+html {
+    /* 10 pixels is easier to mentally calculate */
+    font-size: 62.5%;
+}
+
+/* using inheritance to set up font configuration, and it's more efficient and the best practice*/
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    /* 1.7 times bigger than the pre-defined line height */
+    line-height: 1.7;
+    color: #777;
+    padding: 3rem;
+
+    /* Change the box models so the borders and the paddings are no longer added to the total height and width*/
+    box-sizing: border-box;
+}
+
+.header {
+    height: 95vh;
+    /* here we are setting fist a linear gradient, and then a background img */
+    background-image: linear-gradient(
+        to right bottom, 
+        rgba($color-primary-light,0.8), 
+        rgba($color-primary-dark,0.8), 
+        url('../img/hero.jpg');
+    /* maintain aspect ratio even when zooming */
+    background-size: cover;
+    /* The top of the image always stays at the top of the container */
+    background-position: top;
+
+    /* setting up origin position */
+    position: relative;
+
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
+
+.header__logo-box {
+    /* here we use absolute positioning */
+    position: absolute;
+    /* the reference for the starting point is a parent that has it's position set to relative */
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    pointer-events: none;
+    height: 3.5rem;
+}
+
+
+.header__text-box {
+    /* here we set up an absolute position, and then TRANSLATE the box, so the starting point it's at it's center */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* this is related to the element, and not it's parent */
+    transform: translate(-50%, -50%);
+    /* aligining the button at center */
+    text-align: center;
+}
+
+.heading-primary {
+    color: white;
+    text-transform: uppercase;
+    /* fix for animation shakiness */
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+
+    animation-name: moveInLeft;
+    animation-duration: 0.9s;
+    animation-timing-function: ease-out;
+
+    /*
+        animation-delay: 0.5s;
+        animation-iteration-count: 3;
+    */
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+
+    /* short syntax for animation */
+    animation: moveInRight 0.9s ease-out;
+}
+
+/* for browser performance is best to animate only 2 different properties */
+/* transform does a lot of things, so usually it's enough */
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80%{
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    80%{
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* link is a pseudo class (like hover)
+    link is a special state for an a element
+    we don't want any changes to already visited links
+*/
+.btn:link, .btn:visited {
+    text-transform: uppercase;
+    color: gray;
+    text-decoration: none;
+    /* top right bottom left */
+    padding: 1.5rem 4rem;
+    /*  with inline block we have:
+        - block predef instead of text predef
+        - inline predef instead of block's predef (doesn't go the full width)
+        
+        the only thing this is doing it's giving it a block margin/padding, but 
+        it maintains its text characteristic
+        */
+    display: inline-block;
+    border-radius: 10rem;
+    /* specify which properties we want to animate*/
+    transition: all .2s;
+    /* setting to relative so the ::after gets the button as the reference */
+    position: relative;
+    font-size: 1.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /* offset in x direction ;  offset in Y direction; blur ; color*/
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+/* once clicked */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.btn--white {
+    background-color: white;
+    color: #777;
+}
+
+.btn::after {
+    /* add an element exactly like the button, behind the button 
+    when you hover out the button, the pseudo element goes back behind the button
+
+    for this button you need to specify it s content and its display type
+    
+    it is treated like a child of the chosen element
+    */
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    /* use absolute positioning to put it behind the actual button */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* the reference will always be the first element with relative positioning it can find */
+    transition: all .4s;
+}
+
+.btn--white::after{
+    background-color: white;
+}
+
+/* WHEN WE HOVER THE BUTTON, WE WANT SOME CERTAIN STYLES FOR THE "AFTER" PSEUDO ELEMENT */
+.btn:hover::after {
+    /* grow and fade out */
+    transform: scaleX(1.2) scaleY(1.4);
+    opacity: 0;
+}
+
+.btn--animated {
+    animation: moveInButton .5s ease-out 1s;
+    /* animation fill mode will solve the "button doesn't start invisible" problem */
+    /* backwards basically sets up that the initial property is injected in the element */
+    animation-fill-mode: backwards;
+}
